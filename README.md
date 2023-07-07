@@ -4,7 +4,7 @@ A randomised dice game in which there are no losers. Built with ♥ using typesc
 
 ## Usage
 
-- Copy the contents of the folder into your desired location
+- Copy the contents of the repo into your desired location
 - Install the deps `npm install`
 - Build the code `npm run build`
 - Run the tests `npm run test`
