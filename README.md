@@ -8,8 +8,7 @@ A randomised dice game in which there are no losers. Built with ♥ using typesc
 - Install the deps `npm install`
 - Build the code `npm run build`
 - Run the tests `npm run test`
-
-
+- Start the game `npm run start <num-of-players> <target-points>`
 
    
 ## Authors
