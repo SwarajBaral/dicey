@@ -13,9 +13,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.3.7",
     "prompt-sync": "^4.2.0"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.5",
     "@types/jasmine": "^4.3.5",
     "@types/prompt-sync": "^4.2.0",
     "jasmine-core": "^5.0.1",
