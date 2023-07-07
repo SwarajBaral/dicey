@@ -44,7 +44,7 @@ export class Dicey
 	 * @param {Player} player
 	 * @returns void
 	 */
-	private rollDice(player: Player): void
+	public rollDice(player: Player): void
 	{
 		const roll = Math.floor(Math.random() * 6) + 1;
 		console.log(`${player.name} rolled a ${roll}.`);
@@ -56,7 +56,7 @@ export class Dicey
 			player.isPenalised = true;
 		}
 
-		if(roll === 6 && player.sixRolls < 3)
+		if(roll === 6 && player.sixRolls < 2)
 		{
 			console.log(`${player.name} gets another chance!`);
 			player.sixRolls++;
