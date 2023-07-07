@@ -54,14 +54,18 @@ describe("Unit tests for dice roll", () =>
         const dummyPlayer = new Player("Dummy player");
         const dummyGame = new Dicey(4, 40);
         dummyPlayer.points = 5;
-        sandbox.stub(Math, "floor").returns(5); // Player will roll 5 + 1
+        sandbox.stub(Math, "floor")
+                .onFirstCall()
+                .returns(5)
+                .onSecondCall()
+                .returns(1); // Player will roll 6 first, then 2
         
         // Act
         dummyGame.rollDice(dummyPlayer);
 
         // Assert
         expect(dummyPlayer.sixRolls).to.be.greaterThan(0);
-        expect(dummyPlayer.points).to.be.equal(23);
+        expect(dummyPlayer.points).to.be.equal(13);
     })
 
     it("Should limit the extra turns awarded on every six rolls to 2", () =>

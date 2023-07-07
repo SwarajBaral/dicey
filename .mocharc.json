@@ -5,8 +5,7 @@
     "spec": "test/*.ts",
     "require": [
       "ts-node/register",
-      "dotenv/config",
-      "mocha-suppress-logs"
+      "dotenv/config"
     ],
     "recursive": true,
     "timeout": 200000
