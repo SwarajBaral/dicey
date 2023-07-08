@@ -9,14 +9,17 @@ export class Dicey
 	private readonly targetPoints: number;
 	private rank: number;
 	private prompt: PromptSync.Prompt;
+	private isDebug: boolean;
 	
-	constructor(numPlayers: number, targetPoints: number)
+	constructor(numPlayers: number, targetPoints: number, isDebug: boolean)
 	{
 		this.players = [];
 		this.currentPlayerIndex = 0;
 		this.targetPoints = targetPoints;
 		this.rank = 1;
 		this.prompt = PromptSync();
+		this.isDebug = isDebug;
+
 
 		for (let i = 1; i <= numPlayers; i++)
 		{
@@ -47,7 +50,8 @@ export class Dicey
 	 */
 	public rollDice(player: Player): void
 	{
-		const roll = Math.floor(Math.random() * 6) + 1;
+		const roll = this.isDebug ? Number(this.prompt("Enter the debug roll number: ")) : Math.floor(Math.random() * 6) + 1;
+
 		console.log(`${player.name} rolled a ${roll}.`);
 		player.points += roll;
 
@@ -132,6 +136,7 @@ export class Dicey
 				if(currentPlayer.isPenalised)
 				{
 					console.log(`${currentPlayer.name} was penalized last round. Skipping turn.`)
+					currentPlayer.isPenalised = false;
 					continue;
 				}
 

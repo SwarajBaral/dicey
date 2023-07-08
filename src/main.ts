@@ -8,7 +8,8 @@ if(process.argv.length < 4)
 
 const numPlayers = Number(process.argv[2]);
 const targetPoints = Number(process.argv[3]);
+const isDebug = process.argv.includes("d");
 
-const game = new Dicey(numPlayers, targetPoints);
+const game = new Dicey(numPlayers, targetPoints, isDebug);
 
 game.playGame();
