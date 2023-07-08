@@ -1,6 +1,7 @@
 import PromptSync from "prompt-sync";
 import { Player } from "./player";
 
+var MAX_EXTRA_ATTEMPTS = 2
 export class Dicey
 {
 	private players: Player[];
@@ -56,7 +57,9 @@ export class Dicey
 			player.isPenalised = true;
 		}
 
-		if(roll === 6 && player.sixRolls < 2)
+		player.lastRoll = roll;
+
+		if(roll === 6 && player.sixRolls < MAX_EXTRA_ATTEMPTS)
 		{
 			console.log(`${player.name} gets another chance!`);
 			player.sixRolls++;
@@ -136,14 +139,24 @@ export class Dicey
 
 				while(keyPress !== "r")
 				{
-					keyPress = this.prompt(`${currentPlayer.name}, it's your turn (press 'r' to roll the dice):`);
-					if(!["r", "R"].includes(keyPress))
+					keyPress = this.prompt(`${currentPlayer.name}, it's your turn (press 'r' to roll the dice, press 'z' to exit):`);
+					if(keyPress === 'z')
+					{
+						console.log("You quit the game. Bye !")
+						process.exit(0);
+					}
+					if(keyPress !== "r")
 					{
 						console.log("Oops, you did not press 'r' !!!");
 					}
 				}
 
 				this.rollDice(currentPlayer);
+
+				if(currentPlayer.sixRolls === MAX_EXTRA_ATTEMPTS)
+				{
+					currentPlayer.sixRolls = 0;
+				}
 	
 				if (currentPlayer.points >= this.targetPoints)
 				{

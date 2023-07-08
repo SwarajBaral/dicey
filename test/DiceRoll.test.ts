@@ -38,14 +38,22 @@ describe("Unit tests for dice roll", () =>
         const dummyPlayer = new Player("Dummy player");
         const dummyGame = new Dicey(4, 40);
         dummyPlayer.points = 5;
-        dummyPlayer.lastRoll = 1 // Simulating first roll as 1
-        sandbox.stub(Math, "floor").returns(0); // Player will roll 0 + 1
+        sandbox.stub(Math, "floor")
+                .onFirstCall()
+                .returns(0)
+                .onSecondCall()
+                .returns(0); // Player will roll 1 on both tries
+        
         
         // Act
-        dummyGame.rollDice(dummyPlayer);
+        dummyGame.rollDice(dummyPlayer); // First roll
+        dummyGame.rollDice(dummyPlayer); // Second roll
+
 
         // Assert
         expect(dummyPlayer.isPenalised).to.be.equal(true);
+        expect(dummyPlayer.points).to.be.equal(7);
+        expect(dummyPlayer.lastRoll).to.be.equal(1);
     })
 
     it("Should reward player with extra turn if a six roll occurs", () =>
@@ -74,7 +82,7 @@ describe("Unit tests for dice roll", () =>
         const dummyPlayer = new Player("Dummy player");
         const dummyGame = new Dicey(4, 40);
         dummyPlayer.points = 5;
-        sandbox.stub(Math, "floor").returns(5); // Player will roll 5 + 1
+        sandbox.stub(Math, "floor").returns(5); // Player will roll 6 for 3 times
         
         // Act
         dummyGame.rollDice(dummyPlayer);
