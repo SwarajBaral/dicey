@@ -1,7 +1,7 @@
 import PromptSync from "prompt-sync";
 import { Player } from "./player";
 
-var MAX_EXTRA_ATTEMPTS = 2
+const MAX_EXTRA_ATTEMPTS = 2
 export class Dicey
 {
 	private players: Player[];

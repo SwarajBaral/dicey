@@ -21,7 +21,7 @@ describe("Unit tests for dice roll", () =>
     {
         // Arrange
         const dummyPlayer = new Player("Dummy player");
-        const dummyGame = new Dicey(4, 40);
+        const dummyGame = new Dicey(4, 40, false);
         dummyPlayer.points = 5;
         sandbox.stub(Math, "floor").returns(4); // Player will roll 4 + 1
         
@@ -36,7 +36,7 @@ describe("Unit tests for dice roll", () =>
     {
         // Arrange
         const dummyPlayer = new Player("Dummy player");
-        const dummyGame = new Dicey(4, 40);
+        const dummyGame = new Dicey(4, 40, false);
         dummyPlayer.points = 5;
         sandbox.stub(Math, "floor")
                 .onFirstCall()
@@ -60,7 +60,7 @@ describe("Unit tests for dice roll", () =>
     {
         // Arrange
         const dummyPlayer = new Player("Dummy player");
-        const dummyGame = new Dicey(4, 40);
+        const dummyGame = new Dicey(4, 40, false);
         dummyPlayer.points = 5;
         sandbox.stub(Math, "floor")
                 .onFirstCall()
@@ -80,7 +80,7 @@ describe("Unit tests for dice roll", () =>
     {
         // Arrange
         const dummyPlayer = new Player("Dummy player");
-        const dummyGame = new Dicey(4, 40);
+        const dummyGame = new Dicey(4, 40, false);
         dummyPlayer.points = 5;
         sandbox.stub(Math, "floor").returns(5); // Player will roll 6 for 3 times
         
